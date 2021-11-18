@@ -32,13 +32,9 @@ struct TipsView: View {
                     }
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.8)
                     .padding()
-                    .background(
-                        
-                        changeBackgroundColor(index: index)
-                        
-                    )
+                    .background(changeBackgroundColor(index: index))
                     .cornerRadius(25)
-                    .padding()
+//                    .padding()
                     
                 }
             }

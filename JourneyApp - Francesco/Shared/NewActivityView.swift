@@ -76,12 +76,11 @@ struct NewActivityView: View {
             
             VStack(alignment: .leading) {
                 
-                    TextField("Title",text: $title)
-                        .font(Font.title.weight(.bold))
-                        .font(.title)
-                        .font(.system(size: 35.0))
-                        .padding(.horizontal, 7)
-//                    Spacer()
+                TextField("Title",text: $title)
+                    .font(Font.title.weight(.bold))
+                    .font(.title)
+                    .font(.system(size: 35.0))
+                    .padding(.horizontal, 7)
                 
                 TextField("Description", text: $description)
                 
@@ -95,8 +94,9 @@ struct NewActivityView: View {
                         .font(.title2)
                     Spacer()
                     DatePicker("Please enter a time", selection: $startTime, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
+                        .font(Font.title.weight(.bold))
                         .foregroundColor(.white)
+                        .labelsHidden()
                         .background(Color.brickColor)
                         .cornerRadius(10)
                 }
@@ -106,8 +106,9 @@ struct NewActivityView: View {
                         .font(.title2)
                     Spacer()
                     DatePicker("Please enter a time", selection: $endTime, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
+                        .font(Font.title.weight(.bold))
                         .foregroundColor(.white)
+                        .labelsHidden()
                         .background(Color.brickColor)
                         .cornerRadius(10)
                 }
@@ -116,16 +117,9 @@ struct NewActivityView: View {
     }
 }
 
-//@available(iOS 15, *)
-//struct NewActivityView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            MyScheduleView()
-//                .previewInterfaceOrientation(.portraitUpsideDown)
-//            MyScheduleView()
-//                .previewInterfaceOrientation(.portrait)
-//        }
-//    }
-//}
-
-
+@available(iOS 15, *)
+struct NewActivityView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewActivityView(showModal: .constant(true))
+    }
+}
