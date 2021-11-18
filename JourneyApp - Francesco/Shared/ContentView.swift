@@ -54,7 +54,7 @@ struct MyScheduleView: View {
                     .fontWeight(.thin)
                     .navigationTitle("My Schedule")
                 
-                NavigationLink(destination: NewActivityView(showModal: $showSheet), isActive: $isRedirecting) {
+                NavigationLink(destination: TipsView(), isActive: $isRedirecting) {
                     HStack {
                         
                         VStack(alignment: .leading,spacing: 5) {
@@ -119,61 +119,145 @@ struct MyScheduleView: View {
                 //            MARK: The ScrollView tracking today's activities
                 
                 ScrollView {
-                    ForEach(items) { item in
-                        NavigationLink {
-                            Text("Activity: \(item.title!) Description: \(item.descrizione!) Start: \(item.startingHour!) End: \(item.endingHour!)")
-                        }
-                    label: {
-                        HStack(alignment: .center) {
+                    VStack(spacing: 0) {
+                        ForEach(items) { item in
                             
-                            Button(action: {
-                                
-                            })
-                            {
-                                Image(systemName: "checkmark.circle")
-                                    .imageScale(.large)
-                                    .foregroundColor(.brickColor)
-                            }
-                            VStack {
-                                HStack {
-                                    Text(today, style: .time)
-                                        .font(.title2)
-                                        .foregroundColor(.black)
-                                        
-                                    Text("5/21")
-                                        .foregroundColor(.black)
-                                }
-                                VStack(alignment: .leading, spacing: 10) {
-                                    HStack {
-                                        Text(item.title!)
-                                            .fontWeight(.bold)
-                                            .font(.title3)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        Button(action: {
+                           HStack {
+//                                Button action
+                                Button(action: {
+                                    
+                                })
+// MARK: How the button is displayed
+                                {
+                                    GeometryReader() { reader in
+                                        VStack(alignment: .center, spacing: 0) {
+                                            //se primo {
+                                            //Spacer(minLength: reader.size.height / 2 )
+                                            //}
                                             
-                                        })
-                                        {
-                                            Image(systemName: "square.and.pencil")
-                                                .foregroundColor(.white)
+                                            //se non primo {
+                                            Rectangle()
+                                                .frame(width: 3)
+                                                .foregroundColor(.red)
+                                            //.padding(.bottom, 4)
+                                            //}
+                                            
+                                            Image(systemName: "checkmark.circle")
+                                                .imageScale(.large)
+                                                .foregroundColor(.brickColor)
+                                            //.frame(width: 8, height: 8)
+                                            
+                                            //se ultimo {
+                                            //Spacer(minLength: reader.size.height / 2)
+                                            //}
+                                            
+                                            //se non ultimo {
+                                            Rectangle()
+                                                .frame(width: 3)
+                                                .foregroundColor(.red)
+                                            //.padding(.top, 4)
+                                            //}
                                         }
-                                    }
-                                    Text(item.descrizione!)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .foregroundColor(.white)
-                                        .multilineTextAlignment(.leading)
+                                    }.frame(width: 15)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(Color.brickColor)
-                                .cornerRadius(25)
-                            }
-                            
-                            .padding()
+// MARK: Starting time of the activity. Current day of the 21 day's challenge.
+                               VStack {
+                                   HStack {
+                                       Text(today, style: .time)
+                                           .font(.title2)
+                                           .foregroundColor(.black)
+                                       Spacer()
+                                           .frame(width: 170)
+                                       Text("5/21")
+                                           .foregroundColor(.black)
+                                   }
+                                   NavigationLink {
+                                       Text("Activity: \(item.title!) Description: \(item.descrizione!) Start: \(item.startingHour!) End: \(item.endingHour!)")
+                                   }
+                               label: {
+                                   
+                                   HStack(alignment: .center) {
+                                       
+                                       //                                Button(action: {
+                                       //
+                                       //                                })
+                                       //                                {
+                                       //                                    GeometryReader() { reader in
+                                       //                                        VStack(alignment: .center, spacing: 0) {
+                                       //                                            //se primo {
+                                       //                                            //Spacer(minLength: reader.size.height / 2 )
+                                       //                                            //}
+                                       //
+                                       //                                            //se non primo {
+                                       //                                            Rectangle()
+                                       //                                                .frame(width: 3)
+                                       //                                                .foregroundColor(.red)
+                                       //                                            //.padding(.bottom, 4)
+                                       //                                            //}
+                                       //
+                                       //                                            Image(systemName: "checkmark.circle")
+                                       //                                                .imageScale(.large)
+                                       //                                                .foregroundColor(.brickColor)
+                                       //                                            //.frame(width: 8, height: 8)
+                                       //
+                                       //                                            //se ultimo {
+                                       //                                            //Spacer(minLength: reader.size.height / 2)
+                                       //                                            //}
+                                       //
+                                       //                                            //se non ultimo {
+                                       //                                            Rectangle()
+                                       //                                                .frame(width: 3)
+                                       //                                                .foregroundColor(.red)
+                                       //                                            //.padding(.top, 4)
+                                       //                                            //}
+                                       //                                        }
+                                       //                                    }.frame(width: 15)
+                                       //                                }
+                                       //                                VStack {
+                                       //                                    HStack {
+                                       //                                        Text(today, style: .time)
+                                       //                                            .font(.title2)
+                                       //                                            .foregroundColor(.black)
+                                       //                                        Spacer()
+                                       //                                        Text("5/21")
+                                       //                                            .foregroundColor(.black)
+                                       //                                    }
+                                       VStack(alignment: .leading, spacing: 10) {
+                                           HStack {
+                                               Text(item.title!)
+                                                   .fontWeight(.bold)
+                                                   .font(.title3)
+                                                   .foregroundColor(.white)
+                                               Spacer()
+                                               Button(action: {
+                                                   
+                                               })
+                                               {
+                                                   Image(systemName: "square.and.pencil")
+                                                       .foregroundColor(.white)
+                                               }
+                                           }
+                                           Text(item.descrizione!)
+                                               .fixedSize(horizontal: false, vertical: true)
+                                               .foregroundColor(.white)
+                                               .multilineTextAlignment(.leading)
+                                       }
+                                       .frame(maxWidth: .infinity, alignment: .leading)
+                                       .padding()
+                                       .background(Color.brickColor)
+                                       .cornerRadius(25)
+                                   }
+                                   
+                                   .padding([.leading, .trailing])
+                               }
+                                   
+                               }
+                               }
+                           .padding()
                         }
+                        .onDelete(perform: deleteItems)
+                        
                     }
-                    }
-                    .onDelete(perform: deleteItems)
                 }
             }
             .padding()

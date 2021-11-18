@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CF8B02D274667530039DAA9 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B02C274667530039DAA9 /* TipsView.swift */; };
+		2CF8B02E274667530039DAA9 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B02C274667530039DAA9 /* TipsView.swift */; };
+		2CF8B030274668740039DAA9 /* TipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B02F274668740039DAA9 /* TipsModel.swift */; };
+		2CF8B031274668740039DAA9 /* TipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B02F274668740039DAA9 /* TipsModel.swift */; };
+		2CF8B0332746692B0039DAA9 /* TipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B0322746692B0039DAA9 /* TipsData.swift */; };
+		2CF8B0342746692B0039DAA9 /* TipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8B0322746692B0039DAA9 /* TipsData.swift */; };
 		471A673F27427DF6006F8183 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A673E27427DF6006F8183 /* Tests_iOS.swift */; };
 		471A674127427DF6006F8183 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A674027427DF6006F8183 /* Tests_iOSLaunchTests.swift */; };
 		471A674B27427DF6006F8183 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A674A27427DF6006F8183 /* Tests_macOS.swift */; };
@@ -43,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2CF8B02C274667530039DAA9 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
+		2CF8B02F274668740039DAA9 /* TipsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsModel.swift; sourceTree = "<group>"; };
+		2CF8B0322746692B0039DAA9 /* TipsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsData.swift; sourceTree = "<group>"; };
 		471A672427427DF5006F8183 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		471A672727427DF5006F8183 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		471A672827427DF6006F8183 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,8 +115,11 @@
 		471A672227427DF5006F8183 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2CF8B02F274668740039DAA9 /* TipsModel.swift */,
+				2CF8B0322746692B0039DAA9 /* TipsData.swift */,
 				47DCA612274505DC0054009A /* ContentView.swift */,
 				47DCA613274505DC0054009A /* NewActivityView.swift */,
+				2CF8B02C274667530039DAA9 /* TipsView.swift */,
 				471A672727427DF5006F8183 /* Persistence.swift */,
 				471A672827427DF6006F8183 /* Assets.xcassets */,
 				471A672327427DF5006F8183 /* JourneyApp.xcdatamodeld */,
@@ -311,7 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF8B02D274667530039DAA9 /* TipsView.swift in Sources */,
 				471A675427427DF6006F8183 /* Persistence.swift in Sources */,
+				2CF8B030274668740039DAA9 /* TipsModel.swift in Sources */,
+				2CF8B0332746692B0039DAA9 /* TipsData.swift in Sources */,
 				47337B3B27450514008C9247 /* JourneyAppApp.swift in Sources */,
 				47DCA618274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61A274505DC0054009A /* NewActivityView.swift in Sources */,
@@ -323,7 +338,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF8B02E274667530039DAA9 /* TipsView.swift in Sources */,
 				471A675527427DF6006F8183 /* Persistence.swift in Sources */,
+				2CF8B031274668740039DAA9 /* TipsModel.swift in Sources */,
+				2CF8B0342746692B0039DAA9 /* TipsData.swift in Sources */,
 				47337B3C27450514008C9247 /* JourneyAppApp.swift in Sources */,
 				47DCA619274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61B274505DC0054009A /* NewActivityView.swift in Sources */,

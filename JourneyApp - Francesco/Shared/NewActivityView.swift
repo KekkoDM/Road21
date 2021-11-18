@@ -28,7 +28,7 @@ struct NewActivityView: View {
         return Calendar.current.date(from: components) ?? Date.now
     }
     
-
+    
     
     
     var body: some View {
@@ -50,7 +50,7 @@ struct NewActivityView: View {
                         //FORMAT THE STARTING DATE
                         convertDate = dateFormatter.string(from: endTime)
                         endingTimeD = convertDate
-
+                        
                         //INSERT A NEW ACTIVITY
                         let newItem = Activity(context: viewContext)
                         newItem.title = title
@@ -68,7 +68,7 @@ struct NewActivityView: View {
                             let nsError = error as NSError
                             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                         }
-
+                        
                     }
             }
             
@@ -76,22 +76,18 @@ struct NewActivityView: View {
             
             VStack(alignment: .leading) {
                 
-                HStack {
                     TextField("Title",text: $title)
-                    //                        .font(.title)
+                        .font(Font.title.weight(.bold))
+                        .font(.title)
                         .font(.system(size: 35.0))
-                    //                        .fontWeight(.bold)
-                    Spacer()
-                }
-                
+                        .padding(.horizontal, 7)
+//                    Spacer()
                 
                 TextField("Description", text: $description)
                 
                     .frame(height: 150, alignment: .topLeading)
                     .padding()
-                    .background(
-                        Color.secondary.opacity(0.1)
-                    )
+                    .background(Color.customBeige)
                     .cornerRadius(20)
                 
                 HStack {
@@ -100,6 +96,9 @@ struct NewActivityView: View {
                     Spacer()
                     DatePicker("Please enter a time", selection: $startTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
+                        .foregroundColor(.white)
+                        .background(Color.brickColor)
+                        .cornerRadius(10)
                 }
                 
                 HStack {
@@ -108,6 +107,9 @@ struct NewActivityView: View {
                     Spacer()
                     DatePicker("Please enter a time", selection: $endTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
+                        .foregroundColor(.white)
+                        .background(Color.brickColor)
+                        .cornerRadius(10)
                 }
             }
         }.padding(.horizontal, 15)
