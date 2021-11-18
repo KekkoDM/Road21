@@ -262,6 +262,9 @@ struct MyScheduleView: View {
             }
             .padding()
         }
+        .onAppear {
+            UserDefaults.standard.set(today, forKey: "currentDay")
+        }
         
     }
     

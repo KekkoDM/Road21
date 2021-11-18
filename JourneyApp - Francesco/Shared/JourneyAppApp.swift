@@ -9,12 +9,19 @@ import SwiftUI
 
 @main
 struct JourneyAppApp: App {
+    
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
-            MyScheduleView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if !UserDefaults.standard.bool(forKey: "FirstOpen"){
+                IntroView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }else{
+                MyScheduleView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
+            
         }
     }
+    
 }
