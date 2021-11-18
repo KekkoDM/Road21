@@ -7,147 +7,6 @@
 
 import SwiftUI
 import CoreData
-//
-//struct ContentView: View {
-//    @Environment(\.managedObjectContext) var viewContext
-//    
-//    @FetchRequest(
-//        entity: Activity.entity(),
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Activity.startingHour, ascending: true)],
-//        animation: .default) private var items: FetchedResults<Activity>
-//    
-//    
-//    @State var showSheet: Bool = false
-//    
-//    var body: some View {
-//        NavigationView {
-//            List {
-//                ForEach(items) { item in
-//                    NavigationLink {
-//                        Text("Activity: \(item.title!) Description: \(item.descrizione!) Start: \(item.startingHour!) End: \(item.endingHour!)")
-//                    }
-//                label: {
-//                    
-//                    HStack(alignment: .center) {
-//                        
-//                        VStack {
-//                            
-//                            Spacer()
-//                                .frame(height: 40)
-//                            Button(action: {
-//                                
-//                            })
-//                            {
-//                                Image(systemName: "checkmark.circle")
-//                                    .imageScale(.large)
-//                                //                                    .foregroundColor(.brickColor)
-//                            }
-//                        }
-//                        VStack {
-//                            HStack {
-////                                                                Text(today, style: .time)
-////                                                                    .font(.title2)
-//                                
-//                                Spacer()
-//                                
-//                                Text("5/21")
-//                            }
-//                            
-//                            
-//                            VStack(alignment: .leading, spacing: 10) {
-//                                
-//                                HStack {
-//                                    Text(item.title!)
-//                                        .fontWeight(.bold)
-//                                        .font(.title3)
-//                                        .foregroundColor(.black)
-//                                    
-//                                    Spacer()
-//                                    
-//                                    Button(action: {
-//                                        
-//                                    })
-//                                    {
-//                                        Image(systemName: "square.and.pencil")
-//                                            .foregroundColor(.white)
-//                                    }
-//                                }
-//                                Text(item.descrizione!)
-//                                    .fixedSize(horizontal: false, vertical: true)
-//                                    .foregroundColor(.black)
-//                                    .multilineTextAlignment(.leading)
-//                                
-//                            }
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .padding()
-//                            .background(
-//                                //                                Color.brickColor
-//                            )
-//                            .cornerRadius(25)
-//                        }
-//                        
-//                        .padding()
-//                        //                        .background(Color.red)
-//                    }
-//                }
-//                }
-//                .onDelete(perform: deleteItems)
-//            }
-//            .toolbar {
-//                
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    EditButton()
-//                }
-//                ToolbarItem {
-//                    Button("+") {
-//                        showSheet.toggle()
-//                    }
-//                    .sheet(isPresented: $showSheet){
-//                        NewActivityView(showModal: self.$showSheet)
-//                    }
-//                }
-//            }
-//            Text("Select an item")
-//        }
-//        
-//    }
-//    
-//    
-//    
-//    
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { items[$0] }.forEach(viewContext.delete)
-//            
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
-//    
-//}
-
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
-
-
-//
-//  MyScheduleView.swift
-//  ProjectTwo
-//
-//  Created by Aristide LAUGA on 12/11/2021.
-//
-
-
 
 @available(iOS 15, *)
 
@@ -195,8 +54,7 @@ struct MyScheduleView: View {
                     .fontWeight(.thin)
                     .navigationTitle("My Schedule")
                 
-                NavigationLink(destination: NewActivityView(showModal: $showSheet ), isActive: $isRedirecting) {
-                    //              MARK: Tips button to navigate to the Tips screen
+                NavigationLink(destination: NewActivityView(showModal: $showSheet), isActive: $isRedirecting) {
                     HStack {
                         
                         VStack(alignment: .leading,spacing: 5) {
@@ -260,86 +118,67 @@ struct MyScheduleView: View {
                 }
                 //            MARK: The ScrollView tracking today's activities
                 
-                    List {
-                        ForEach(items) { item in
-                            NavigationLink {
-                                Text("Activity: \(item.title!) Description: \(item.descrizione!) Start: \(item.startingHour!) End: \(item.endingHour!)")
+                ScrollView {
+                    ForEach(items) { item in
+                        NavigationLink {
+                            Text("Activity: \(item.title!) Description: \(item.descrizione!) Start: \(item.startingHour!) End: \(item.endingHour!)")
+                        }
+                    label: {
+                        HStack(alignment: .center) {
+                            
+                            Button(action: {
+                                
+                            })
+                            {
+                                Image(systemName: "checkmark.circle")
+                                    .imageScale(.large)
+                                    .foregroundColor(.brickColor)
                             }
-                            label: {
-                                HStack(alignment: .center) {
-                                    
-                                    VStack {
+                            VStack {
+                                HStack {
+                                    Text(today, style: .time)
+                                        .font(.title2)
+                                        .foregroundColor(.black)
                                         
+                                    Text("5/21")
+                                        .foregroundColor(.black)
+                                }
+                                VStack(alignment: .leading, spacing: 10) {
+                                    HStack {
+                                        Text(item.title!)
+                                            .fontWeight(.bold)
+                                            .font(.title3)
+                                            .foregroundColor(.white)
                                         Spacer()
-                                            .frame(height: 40)
                                         Button(action: {
                                             
                                         })
                                         {
-                                            Image(systemName: "checkmark.circle")
-                                                .imageScale(.large)
-                                                .foregroundColor(.brickColor)
+                                            Image(systemName: "square.and.pencil")
+                                                .foregroundColor(.white)
                                         }
                                     }
-                                    VStack {
-                                        HStack {
-                                            Text(today, style: .time)
-                                                .font(.title2)
-                                            
-                                            Spacer()
-                                            
-                                            Text("5/21")
-                                        }
-                                        
-                                        
-                                        VStack(alignment: .leading, spacing: 10) {
-                                            
-                                            HStack {
-                                                Text(item.title!)
-                                                    .fontWeight(.bold)
-                                                    .font(.title3)
-                                                    .foregroundColor(.black)
-                                                
-                                                Spacer()
-                                                
-                                                Button(action: {
-                                                    
-                                                })
-                                                {
-                                                    Image(systemName: "square.and.pencil")
-                                                        .foregroundColor(.white)
-                                                }
-                                            }
-                                            Text(item.descrizione!)
-                                                .fixedSize(horizontal: false, vertical: true)
-                                                .foregroundColor(.black)
-                                                .multilineTextAlignment(.leading)
-                                            
-                                        }
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .padding()
-                                        .background(
-                                            Color.brickColor
-                                        )
-                                        .cornerRadius(25)
-                                    }
-                                    
-                                    .padding()
-                                    //                                    .background(Color.red)
+                                    Text(item.descrizione!)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.leading)
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color.brickColor)
+                                .cornerRadius(25)
                             }
+                            
+                            .padding()
                         }
-                        .onDelete(perform: deleteItems)
                     }
-                    
-                    
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                
-                //            MARK: The second activity
-    
-            
+            }
+            .padding()
         }
-        .padding()
+        
     }
     
     private func deleteItems(offsets: IndexSet) {
@@ -358,112 +197,9 @@ struct MyScheduleView: View {
     }
 }
 
-
-
-func registeringPosition() {
-    
-}
-
 @available(iOS 15, *)
 struct MyScheduleView_Previews: PreviewProvider {
     static var previews: some View {
         MyScheduleView(adaptiveText: "Day 6")
     }
 }
-
-
-/*
- 
- print("Global center: \(geo.frame(in: .global).midX) x \(geo.frame(in: .global).midY)")
- 
- 
- */
-
-/*
- if activities[index] == 0 {
- 
- } else {
- Path(
- )
- }
- 
- */
-
-
-
-/*
- if activities[index] == activites.last {
- From the upside to the center
- }
- 
- //                                Path { path in
- //                                    path.move(to: CGPoint(x: CGFloat(geo.frame(in: .global).midX)), y: CGPoint(geo.frame(in: .global).midY)))
- //
- //                                }
- 
- Path { path in
- path.move(to: CGPoint(x: geo.frame(in: .global).midX, y: geo.frame(in: .global).midY))
- path.addLine(to: CGPoint(x: 300, y: 300))
- path.closeSubpath()
- }.foregroundColor(.red)
- */
-
-
-
-
-
-/*
- 
- 
- 
- HStack(alignment: .center) {
- Image(systemName: "checkmark.circle")
- .imageScale(.large)
- .padding(.top, 35)
- .padding(5)
- .foregroundColor(Color(UIColor(red: 0.70, green: 0.29, blue: 0.20, alpha: 1.00)))
- VStack {
- HStack {
- Text(today, style: .time)
- .font(.title2)
- 
- Spacer()
- 
- Text("5/21")
- }
- .padding(.leading, 5)
- .padding(.trailing, 2)
- 
- VStack(alignment: .trailing, spacing: 10) {
- 
- HStack {
- Text("Morning meditation")
- .fontWeight(.bold)
- .font(.title3)
- .foregroundColor(.white)
- 
- Spacer()
- 
- Image(systemName: "square.and.pencil")
- .foregroundColor(.white)
- }
- Text("Just relax and enjoy for at least 10 minutes.")
- .fixedSize(horizontal: false, vertical: true)
- .foregroundColor(.white)
- .multilineTextAlignment(.leading)
- 
- }
- .frame(maxWidth: .infinity, alignment: .leading)
- .padding()
- .background(
- Color.brickColor
- )
- .cornerRadius(25)
- }
- }
- .padding()
- 
- 
- 
- 
- */
