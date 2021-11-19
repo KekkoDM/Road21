@@ -19,6 +19,8 @@
 		471A675727427DF6006F8183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 471A672827427DF6006F8183 /* Assets.xcassets */; };
 		47337B3B27450514008C9247 /* JourneyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47337B3A27450514008C9247 /* JourneyAppApp.swift */; };
 		47337B3C27450514008C9247 /* JourneyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47337B3A27450514008C9247 /* JourneyAppApp.swift */; };
+		4797E8452747FD8D00762A03 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E8442747FD8D00762A03 /* IntroView.swift */; };
+		4797E8462747FD8D00762A03 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E8442747FD8D00762A03 /* IntroView.swift */; };
 		47DCA618274505DC0054009A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA612274505DC0054009A /* ContentView.swift */; };
 		47DCA619274505DC0054009A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA612274505DC0054009A /* ContentView.swift */; };
 		47DCA61A274505DC0054009A /* NewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA613274505DC0054009A /* NewActivityView.swift */; };
@@ -62,6 +64,7 @@
 		471A674A27427DF6006F8183 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		471A674C27427DF6006F8183 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		47337B3A27450514008C9247 /* JourneyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAppApp.swift; sourceTree = "<group>"; };
+		4797E8442747FD8D00762A03 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		47DCA612274505DC0054009A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47DCA613274505DC0054009A /* NewActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewActivityView.swift; sourceTree = "<group>"; };
 		92E014732747F4A900B98EC8 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 		471A672227427DF5006F8183 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4797E8442747FD8D00762A03 /* IntroView.swift */,
 				92E014792747F56100B98EC8 /* TipsModel.swift */,
 				92E014762747F52000B98EC8 /* TipsData.swift */,
 				47DCA612274505DC0054009A /* ContentView.swift */,
@@ -328,6 +332,7 @@
 				471A675427427DF6006F8183 /* Persistence.swift in Sources */,
 				92E0147A2747F56100B98EC8 /* TipsModel.swift in Sources */,
 				47337B3B27450514008C9247 /* JourneyAppApp.swift in Sources */,
+				4797E8452747FD8D00762A03 /* IntroView.swift in Sources */,
 				47DCA618274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61A274505DC0054009A /* NewActivityView.swift in Sources */,
 				471A674E27427DF6006F8183 /* JourneyApp.xcdatamodeld in Sources */,
@@ -343,6 +348,7 @@
 				471A675527427DF6006F8183 /* Persistence.swift in Sources */,
 				92E0147B2747F56100B98EC8 /* TipsModel.swift in Sources */,
 				47337B3C27450514008C9247 /* JourneyAppApp.swift in Sources */,
+				4797E8462747FD8D00762A03 /* IntroView.swift in Sources */,
 				47DCA619274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61B274505DC0054009A /* NewActivityView.swift in Sources */,
 				471A674F27427DF6006F8183 /* JourneyApp.xcdatamodeld in Sources */,

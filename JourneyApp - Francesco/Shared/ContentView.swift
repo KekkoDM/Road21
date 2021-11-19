@@ -31,7 +31,7 @@ struct MyScheduleView: View {
     let today = Date()
     
     @State var showSheet: Bool = false
-    @State var day: Int = 0
+    @State var day: Int = UserDefaults.standard.integer(forKey: "day")
     @State private var isRedirecting = false
     
     @State var isCompleted = false
@@ -121,34 +121,6 @@ struct MyScheduleView: View {
                             if(item.day == day){
                             HStack {
                                 ZStack {
-                                    //                                    GeometryReader() { reader in
-                                    //                                        VStack(alignment: .center, spacing: 0) {
-                                    //                                            //se primo {
-                                    //                                            //Spacer(minLength: reader.size.height / 2 )
-                                    //                                            //}
-                                    //
-                                    //                                            //se non primo {
-                                    //                                            Rectangle()
-                                    //                                                .frame(width: 3)
-                                    //                                                .foregroundColor(.red)
-                                    //                                            //.padding(.bottom, 4)
-                                    //                                            //}
-                                    //
-                                    //
-                                    //                                            //.frame(width: 8, height: 8)
-                                    //
-                                    //                                            //se ultimo {
-                                    //                                            //Spacer(minLength: reader.size.height / 2)
-                                    //                                            //}
-                                    //
-                                    //                                            //se non ultimo {
-                                    //                                            Rectangle()
-                                    //                                                .frame(width: 3)
-                                    //                                                .foregroundColor(.red)
-                                    //                                            //.padding(.top, 4)
-                                    //                                            //}
-                                    //                                        }
-                                    //                                    }.frame(width: 15)
                                 }
                                 Button(action: {
                                     item.done.toggle()
@@ -169,7 +141,7 @@ struct MyScheduleView: View {
                                             .foregroundColor(.black)
                                         Spacer()
                                             .frame(width: 170)
-                                        Text("5/21")
+                                        Text("\(day)/21")
                                             .foregroundColor(.black)
                                     }
                                     NavigationLink {
@@ -207,8 +179,9 @@ struct MyScheduleView: View {
                                 }
                                 }
                             }
-                            }
                             .padding()
+                            }
+                            
                         }
                         .onAppear {
                             day = UserDefaults.standard.integer(forKey:"day")
