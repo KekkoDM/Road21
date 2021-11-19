@@ -23,6 +23,12 @@
 		47DCA619274505DC0054009A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA612274505DC0054009A /* ContentView.swift */; };
 		47DCA61A274505DC0054009A /* NewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA613274505DC0054009A /* NewActivityView.swift */; };
 		47DCA61B274505DC0054009A /* NewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCA613274505DC0054009A /* NewActivityView.swift */; };
+		92E014742747F4A900B98EC8 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014732747F4A900B98EC8 /* TipsView.swift */; };
+		92E014752747F4A900B98EC8 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014732747F4A900B98EC8 /* TipsView.swift */; };
+		92E014772747F52000B98EC8 /* TipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014762747F52000B98EC8 /* TipsData.swift */; };
+		92E014782747F52000B98EC8 /* TipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014762747F52000B98EC8 /* TipsData.swift */; };
+		92E0147A2747F56100B98EC8 /* TipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014792747F56100B98EC8 /* TipsModel.swift */; };
+		92E0147B2747F56100B98EC8 /* TipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E014792747F56100B98EC8 /* TipsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +64,9 @@
 		47337B3A27450514008C9247 /* JourneyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyAppApp.swift; sourceTree = "<group>"; };
 		47DCA612274505DC0054009A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47DCA613274505DC0054009A /* NewActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewActivityView.swift; sourceTree = "<group>"; };
+		92E014732747F4A900B98EC8 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
+		92E014762747F52000B98EC8 /* TipsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsData.swift; sourceTree = "<group>"; };
+		92E014792747F56100B98EC8 /* TipsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +115,10 @@
 		471A672227427DF5006F8183 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				92E014792747F56100B98EC8 /* TipsModel.swift */,
+				92E014762747F52000B98EC8 /* TipsData.swift */,
 				47DCA612274505DC0054009A /* ContentView.swift */,
+				92E014732747F4A900B98EC8 /* TipsView.swift */,
 				47DCA613274505DC0054009A /* NewActivityView.swift */,
 				471A672727427DF5006F8183 /* Persistence.swift */,
 				471A672827427DF6006F8183 /* Assets.xcassets */,
@@ -311,7 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E014772747F52000B98EC8 /* TipsData.swift in Sources */,
+				92E014742747F4A900B98EC8 /* TipsView.swift in Sources */,
 				471A675427427DF6006F8183 /* Persistence.swift in Sources */,
+				92E0147A2747F56100B98EC8 /* TipsModel.swift in Sources */,
 				47337B3B27450514008C9247 /* JourneyAppApp.swift in Sources */,
 				47DCA618274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61A274505DC0054009A /* NewActivityView.swift in Sources */,
@@ -323,7 +338,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E014782747F52000B98EC8 /* TipsData.swift in Sources */,
+				92E014752747F4A900B98EC8 /* TipsView.swift in Sources */,
 				471A675527427DF6006F8183 /* Persistence.swift in Sources */,
+				92E0147B2747F56100B98EC8 /* TipsModel.swift in Sources */,
 				47337B3C27450514008C9247 /* JourneyAppApp.swift in Sources */,
 				47DCA619274505DC0054009A /* ContentView.swift in Sources */,
 				47DCA61B274505DC0054009A /* NewActivityView.swift in Sources */,

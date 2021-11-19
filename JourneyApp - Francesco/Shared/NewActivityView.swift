@@ -2,6 +2,7 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct NewActivityView: View {
+    
     @Binding var showModal: Bool
     @Environment(\.managedObjectContext) private var viewContext
     @State var title = ""
@@ -28,8 +29,12 @@ struct NewActivityView: View {
         return Calendar.current.date(from: components) ?? Date.now
     }
     
-
-    
+    //    static var expiryDate: Date {
+    //        var components = DateComponents()
+    //        components.day = 29
+    //        components.month = 11
+    //        return Calendar.current.date(from: components) ?? Date.now
+    //    }
     
     var body: some View {
         VStack {
@@ -50,7 +55,7 @@ struct NewActivityView: View {
                         //FORMAT THE STARTING DATE
                         convertDate = dateFormatter.string(from: endTime)
                         endingTimeD = convertDate
-
+                        
                         //INSERT A NEW ACTIVITY
                         let newItem = Activity(context: viewContext)
                         newItem.title = title
@@ -68,7 +73,7 @@ struct NewActivityView: View {
                             let nsError = error as NSError
                             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                         }
-
+                        
                     }
             }
             
@@ -76,22 +81,17 @@ struct NewActivityView: View {
             
             VStack(alignment: .leading) {
                 
-                HStack {
-                    TextField("Title",text: $title)
-                    //                        .font(.title)
-                        .font(.system(size: 35.0))
-                    //                        .fontWeight(.bold)
-                    Spacer()
-                }
-                
+                TextField("Title",text: $title)
+                    .font(Font.title.weight(.bold))
+                    .font(.title)
+                    .font(.system(size: 35.0))
+                    .padding(.horizontal, 7)
                 
                 TextField("Description", text: $description)
                 
                     .frame(height: 150, alignment: .topLeading)
                     .padding()
-                    .background(
-                        Color.secondary.opacity(0.1)
-                    )
+                    .background(Color.customBeige)
                     .cornerRadius(20)
                 
                 HStack {
@@ -99,7 +99,11 @@ struct NewActivityView: View {
                         .font(.title2)
                     Spacer()
                     DatePicker("Please enter a time", selection: $startTime, displayedComponents: .hourAndMinute)
+                        .font(Font.title.weight(.bold))
+                        .foregroundColor(.white)
                         .labelsHidden()
+                        .background(Color.brickColor)
+                        .cornerRadius(10)
                 }
                 
                 HStack {
@@ -107,23 +111,39 @@ struct NewActivityView: View {
                         .font(.title2)
                     Spacer()
                     DatePicker("Please enter a time", selection: $endTime, displayedComponents: .hourAndMinute)
+                        .font(Font.title.weight(.bold))
+                        .foregroundColor(.white)
                         .labelsHidden()
+                        .background(Color.brickColor)
+                        .cornerRadius(10)
                 }
             }
         }.padding(.horizontal, 15)
     }
+    
+    func displayTwentyOneDay(newItem: Activity) -> Int {
+        var currentDayOfChallenge = 0
+        var endOfTheDay: Date {
+            var components = DateComponents()
+            components.hour = 23
+            components.minute = 59
+            return Calendar.current.date(from: components) ?? Date.now
+        }
+//      Create a variable to register the first activity as the
+
+//Once it has been created :
+        if endTime < endOfTheDay {
+            currentDayOfChallenge = 1
+        } else {
+
+        }
+        return currentDayOfChallenge
+    }
 }
 
-//@available(iOS 15, *)
-//struct NewActivityView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            MyScheduleView()
-//                .previewInterfaceOrientation(.portraitUpsideDown)
-//            MyScheduleView()
-//                .previewInterfaceOrientation(.portrait)
-//        }
-//    }
-//}
-
-
+@available(iOS 15, *)
+struct NewActivityView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewActivityView(showModal: .constant(true))
+    }
+}
