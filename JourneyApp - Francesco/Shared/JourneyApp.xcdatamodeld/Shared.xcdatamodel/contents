@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="class">
+        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="descrizione" optional="YES" attributeType="String"/>
         <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endingHour" optional="YES" attributeType="String"/>
@@ -11,7 +12,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="Activity" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="Gesu" positionX="-63" positionY="18" width="128" height="44"/>
-        <element name="Activity" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

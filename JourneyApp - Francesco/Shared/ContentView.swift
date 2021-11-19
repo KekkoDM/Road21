@@ -28,18 +28,21 @@ struct MyScheduleView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Activity.startingHour, ascending: true)],
         animation: .default) private var items: FetchedResults<Activity>
     
+    let today = Date()
     
     @State var showSheet: Bool = false
-    let today = Date()
+    @State var day: Int = 0
     @State private var isRedirecting = false
     
-    @State private var isCompleted = false
+    @State var isCompleted = false
     
     @State private var firstXcoordinate: CGFloat = 0
     @State private var firstYcoordinate: CGFloat = 0
     
     @State private var secondXCoordinate: CGFloat = 0
     @State private var secondYCoordinate: CGFloat = 0
+    
+    var adaptiveText: String = ""
     
     @State var twentyOneDays = [Int]()
     
@@ -87,7 +90,7 @@ struct MyScheduleView: View {
                     //            MARK: The current day of the 21's challenge
                     HStack {
                         //Put a responsive way to modify the challenge 1's date
-                        Text("Day 7")
+                        Text("Day \(day)")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
                         
@@ -115,7 +118,7 @@ struct MyScheduleView: View {
                     //                    ScrollView {
                     VStack(spacing: 0) {
                         ForEach(items) { item in
-                            
+                            if(item.day == day){
                             HStack {
                                 ZStack {
                                     //                                    GeometryReader() { reader in
@@ -204,9 +207,23 @@ struct MyScheduleView: View {
                                 }
                                 }
                             }
+                            }
                             .padding()
                         }
-                        .onDelete(perform: deleteItems)
+                        .onAppear {
+                            day = UserDefaults.standard.integer(forKey:"day")
+                            let dateFormatter = DateFormatter()
+                            var lastDay: String!
+                            dateFormatter.dateFormat = "dd-MM"
+                            lastDay = dateFormatter.string(from: Date())
+                            
+                            if( lastDay != UserDefaults.standard.string(forKey: "lastDay")){
+                                UserDefaults.standard.set(lastDay, forKey: "lastDay")
+                                day += 1
+                                UserDefaults.standard.set(day, forKey: "day")
+                            }
+                            
+                        }
                         
                     }
                     //                    }

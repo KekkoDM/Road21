@@ -5,12 +5,14 @@ struct NewActivityView: View {
     
     @Binding var showModal: Bool
     @Environment(\.managedObjectContext) private var viewContext
+    
+    let userNotificationCenter = UNUserNotificationCenter.current()
     @State var title = ""
     @State var description = ""
     @State var convertedDate: String!
     @State var activityDescription = ""
-    @State var startTime = defaultStartTime
-    @State var endTime = defaultEndTime
+    @State var startTime = Date()
+    @State var endTime = Date()
     @State var startingTimeD: String = ""
     @State var endingTimeD: String = ""
     
@@ -45,10 +47,12 @@ struct NewActivityView: View {
                 Spacer()
                 Image(systemName: "plus")
                     .onTapGesture {
+                        
                         //FORMAT THE STARTING DATE
                         let dateFormatter = DateFormatter()
                         var convertDate: String!
                         dateFormatter.dateFormat = "hh:mm a"
+                        
                         convertDate = dateFormatter.string(from: startTime)
                         startingTimeD = convertDate
                         
@@ -62,7 +66,15 @@ struct NewActivityView: View {
                         newItem.descrizione = description
                         newItem.startingHour = startingTimeD
                         newItem.endingHour = endingTimeD
+                        newItem.day = Int16(UserDefaults.standard.integer(forKey: "day"))
                         newItem.done = false
+                        
+                        let startTimeDateComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+                        sendNotification(dateComponent: startTimeDateComponents, item: newItem, isStarting: true)
+                        
+                        let endTimeDateComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+                        sendNotification(dateComponent: endTimeDateComponents, item: newItem, isStarting: false)
+                        
                         showModal.toggle()
                         
                         do {
@@ -119,6 +131,62 @@ struct NewActivityView: View {
                 }
             }
         }.padding(.horizontal, 15)
+    }
+    
+    func sendNotification(dateComponent: DateComponents, item: Activity, isStarting: Bool) {
+        
+        let notificationContent = UNMutableNotificationContent()
+        
+        notificationContent.body = item.descrizione!
+        notificationContent.badge = NSNumber(value: 1)
+        var timing = ""
+        var title = item.title
+        
+        if(isStarting){
+            
+            timing = "starting \(item.title!)"
+            title = "STARTING: " + title!
+        }
+        else{
+            timing = "ending \(item.title!)"
+            title = "ENDING: " + title!
+        }
+        
+        notificationContent.title = title!
+        
+        if let url = Bundle.main.url(forResource: "dune",
+                                    withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                            url: url,
+                                                            options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+        let request = UNNotificationRequest(identifier: timing,
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+    }
+    
+    // Local notifications
+    func application(_ application: UIApplication, didReceive notification: UNNotification) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .badge, .sound])
     }
     
     func displayTwentyOneDay(newItem: Activity) -> Int {

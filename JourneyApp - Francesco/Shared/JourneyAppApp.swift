@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct JourneyAppApp: App {
+struct JourneyAppApp: App{
     
     let persistenceController = PersistenceController.shared
     

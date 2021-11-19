@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 @available(iOS 15, *)
 struct IntroView: View {
     @State var showSchedule: Bool = false
+    // Notification center property
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    // Auth options
+    
+    
     var body: some View {
         
         ZStack {
@@ -57,10 +63,28 @@ struct IntroView: View {
             
         }
         .onAppear {
-            UserDefaults.standard.set(Date(), forKey: "lastDay")
+            UserDefaults.standard.set(1, forKey: "day")
+            let dateFormatter = DateFormatter()
+            var firstDay: String!
+            dateFormatter.dateFormat = "dd-MM"
+            firstDay = dateFormatter.string(from: Date())
             
+            UserDefaults.standard.set(firstDay, forKey: "lastDay")
+            requestNotificationAuthorization()
         }
     }
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+    
+    
+    
+
         
 }
 
