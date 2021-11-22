@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 15, *)
 struct RoutineDetailView: View {
     
-    var item = Activity()
+    var item: Activity
     
     init(item: Activity) {
         self.item = item

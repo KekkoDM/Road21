@@ -134,7 +134,10 @@ struct MyScheduleView: View {
                                             Text("\(day)/21")
                                                 .foregroundColor(.black)
                                         }
-                                        NavigationLink(destination: RoutineDetailView(item: item), isActive: $redirectedToDetailView) {
+                                        NavigationLink {
+                                            RoutineDetailView(item: item)
+                                        }
+                                    label: {
                                             HStack {
                                                 VStack(alignment: .leading, spacing: 10) {
                                                     HStack {
