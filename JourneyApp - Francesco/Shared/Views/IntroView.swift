@@ -95,12 +95,3 @@ struct IntroView_Previews: PreviewProvider {
     }
 }
 
-//Rectangle()
-//    .foregroundColor(Color(UIColor(red: 0.93, green: 0.89, blue: 0.84, alpha: 1.00)))
-
-
-/*
- 
- 
- 
- */

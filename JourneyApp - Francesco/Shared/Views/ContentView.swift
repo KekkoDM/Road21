@@ -21,7 +21,7 @@ extension Color {
 @available(iOS 15, *)
 struct MyScheduleView: View {
     
-    @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
         entity: Activity.entity(),
@@ -138,6 +138,9 @@ struct MyScheduleView: View {
                                             RoutineDetailView(item: item)
                                         }
                                     label: {
+                                        
+                                            
+                                        
                                             HStack {
                                                 VStack(alignment: .leading, spacing: 10) {
                                                     HStack {
@@ -154,7 +157,7 @@ struct MyScheduleView: View {
                                                                 .foregroundColor(.white)
                                                         }
                                                         .sheet(isPresented: $showModifyModal){
-                                                            ModifyActivityView(showModifyModal: $showModifyModal)
+                                                            ModifyActivityView(showModifyModal: $showModifyModal, item: item)
                                                         }
                                                     }
                                                     Text(item.descrizione!)
@@ -167,7 +170,10 @@ struct MyScheduleView: View {
                                                 .background(item.done ? Color.brickColor : .unDoneBrickColor)
                                                 .cornerRadius(25)
                                             }
-                                        }
+                                            
+                                        
+                                        
+                                    }
                                     }
                                 }
                                 .padding()
@@ -197,9 +203,9 @@ struct MyScheduleView: View {
         
     }
     
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItems(item: Activity) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            viewContext.delete(item)
             do {
                 try viewContext.save()
             } catch {

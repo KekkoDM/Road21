@@ -2,44 +2,34 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct ModifyActivityView: View {
+    
+
     @Binding var showModifyModal: Bool
     @Environment(\.managedObjectContext) private var viewContext
+    
+
+    @State var item: Activity
+
+//    init(item: Activity) {
+//        self.item = item
+//
+//    }
+
     
     @State var title = ""
     @State var description = ""
     @State var convertedDate: String!
     @State var activityDescription = ""
-    @State var startTime = defaultStartTime
-    @State var endTime = defaultEndTime
+    @State var startTime = Date()
+    @State var endTime = Date()
     @State var startingTimeD: String = ""
     @State var endingTimeD: String = ""
     
-    static var defaultStartTime: Date {
-        var components = DateComponents()
-        components.hour = 7
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date.now
-    }
-    
-    static var defaultEndTime: Date {
-        var components = DateComponents()
-        components.hour = 7
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date.now
-        
-    }
-    
-//    var items = Activity()
-//
-//    init(items: Activity) {
-//        self.items = items
-//    }
-//
     var body: some View {
         NavigationView {
             VStack {
                 VStack {
-                    TextField("Title",text: $title)
+                    TextField("\(item.title!)",text: $title)
                     .foregroundColor(.black)
                     .font(Font.title.weight(.bold))
                     .font(.title)
@@ -47,7 +37,7 @@ struct ModifyActivityView: View {
                     .padding(.horizontal, 7)
                     .navigationBarTitle(Text("Modify your activity"), displayMode: .inline)
                 
-                TextField("Description", text: $description)
+                    TextField("\(item.descrizione!)", text: $description)
                     .frame(height: 150, alignment: .topLeading)
                     .foregroundColor(.black)
                     .padding()
@@ -83,7 +73,7 @@ struct ModifyActivityView: View {
                             .colorMultiply(.white)
                     }
                 }.padding(.top, 25)
-               
+                
                 Spacer()
             }
             .navigationBarItems(leading:
@@ -94,8 +84,7 @@ struct ModifyActivityView: View {
                 Text("Cancel")
             },
                                 trailing: Button("Done"){
-                //                            modifyItem(item: item)
-                
+                modifyItem(item: item)
             })
             .padding(.horizontal, 15)
         }
@@ -114,14 +103,13 @@ struct ModifyActivityView: View {
         convertDate = dateFormatter.string(from: endTime)
         endingTimeD = convertDate
         
-        //INSERT A NEW ACTIVITY
-        let newItem = Activity(context: viewContext)
-        newItem.title = title
-        newItem.descrizione = description
-        newItem.startingHour = startingTimeD
-        newItem.endingHour = endingTimeD
-        newItem.day = Int16(UserDefaults.standard.integer(forKey: "day"))
-        newItem.done = false
+        //MODIFY AN ACTIVITY
+        item.title = title
+        item.descrizione = description
+        item.startingHour = startingTimeD
+        item.endingHour = endingTimeD
+        item.day = Int16(UserDefaults.standard.integer(forKey: "day"))
+        item.done = false
         
         showModifyModal.toggle()
         
@@ -136,12 +124,12 @@ struct ModifyActivityView: View {
     }
     
     
-    @available(iOS 15, *)
-    struct ModifyActivityView_Previews: PreviewProvider {
-        static var previews: some View {
-            ModifyActivityView(showModifyModal: .constant(true))
-        }
-    }
+//    @available(iOS 15, *)
+//    struct ModifyActivityView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            ModifyActivityView(showModifyModal: true)
+//        }
+//    }
 }
 
 //}
