@@ -30,15 +30,14 @@ struct MyScheduleView: View {
     
     let today = Date()
     
+    @State var currentDay: Int  = UserDefaults.standard.integer(forKey: "day")
     @State var showSheet: Bool = false
     @State var showModifyModal: Bool = false
-    @State var day: Int = UserDefaults.standard.integer(forKey: "day")
+    @State var day: Int = 1
     @State private var isRedirecting = false
     @State private var redirectedToDetailView = false
-    
     @State var isCompleted = false
-        
-    @State var twentyOneDays = [Int]()
+    
     
     var body: some View {
         NavigationView {
@@ -116,6 +115,7 @@ struct MyScheduleView: View {
                                 HStack {
                                     Button(action: {
                                         item.done.toggle()
+                                        
                                     }) {
                                         Image(systemName: item.done ? "checkmark.circle.fill" : "checkmark.circle")
                                             .imageScale(.large)
@@ -137,9 +137,8 @@ struct MyScheduleView: View {
                                         NavigationLink {
                                             RoutineDetailView(item: item)
                                         }
-                                    label: {
                                         
-                                            
+                                    label: {
                                         
                                             HStack {
                                                 VStack(alignment: .leading, spacing: 10) {
@@ -180,7 +179,8 @@ struct MyScheduleView: View {
                             }
                         }
                         .onAppear {
-                            day = UserDefaults.standard.integer(forKey:"day")
+                            currentDay = UserDefaults.standard.integer(forKey:"day")
+                            day = currentDay
                             let dateFormatter = DateFormatter()
                             var lastDay: String!
                             dateFormatter.dateFormat = "dd-MM"
@@ -188,14 +188,26 @@ struct MyScheduleView: View {
                             
                             if( lastDay != UserDefaults.standard.string(forKey: "lastDay")){
                                 UserDefaults.standard.set(lastDay, forKey: "lastDay")
-                                day += 1
-                                UserDefaults.standard.set(day, forKey: "day")
+                                currentDay += 1
+                                UserDefaults.standard.set(currentDay, forKey: "day")
                             }
                         }
                     }
                 }
                 .padding()
-            }
+            }.navigationBarItems(leading:
+                                    Button("Previous day") {
+                if(day > 1){
+                    day -= 1
+                }
+                
+            },
+                                trailing: Button("Next day"){
+                if(day < 21){
+                    day += 1
+                }
+                
+            })
         }
         .onAppear {
             UserDefaults.standard.set(today, forKey: "currentDay")
@@ -203,19 +215,7 @@ struct MyScheduleView: View {
         
     }
     
-    private func deleteItems(item: Activity) {
-        withAnimation {
-            viewContext.delete(item)
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+    
 }
 
 @available(iOS 15, *)
