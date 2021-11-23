@@ -43,10 +43,6 @@ struct MyScheduleView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text(today, style: .date)
-                        .fontWeight(.thin)
-                        .navigationTitle("My Schedule")
-                    
                     NavigationLink(destination: TipsView(), isActive: $isRedirecting) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 25)
@@ -85,14 +81,20 @@ struct MyScheduleView: View {
                         }
                     }
                     //            MARK: The current day of the 21's challenge
+                    
+                    Text(today, style: .date)
+                        .fontWeight(.thin)
+                        .navigationTitle("My Schedule")
+                        .padding(.top, 20)
+                        .padding(.bottom, -2)
                     HStack {
                         Text("Day \(day)")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
                         
                         Text("/21")
-                            .fontWeight(.thin)
-                            .foregroundColor(.customBeige)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(red: 0.89, green: 0.77, blue: 0.66))
                         
                         Spacer()
                         
@@ -114,8 +116,7 @@ struct MyScheduleView: View {
                             if(item.day == day){
                                 HStack {
                                     Button(action: {
-                                        item.done.toggle()
-                                        
+                                        item.done.toggle()  
                                     }) {
                                         Image(systemName: item.done ? "checkmark.circle.fill" : "checkmark.circle")
                                             .imageScale(.large)
@@ -140,38 +141,35 @@ struct MyScheduleView: View {
                                         
                                     label: {
                                         
-                                            HStack {
-                                                VStack(alignment: .leading, spacing: 10) {
-                                                    HStack {
-                                                        Text(item.title!)
-                                                            .fontWeight(.bold)
-                                                            .font(.title3)
-                                                            .foregroundColor(.white)
-                                                        Spacer()
-                                                        Button(action: {
-                                                            showModifyModal.toggle()
-                                                        })
-                                                        {
-                                                            Image(systemName: "square.and.pencil")
-                                                                .foregroundColor(.white)
-                                                        }
-                                                        .sheet(isPresented: $showModifyModal){
-                                                            ModifyActivityView(showModifyModal: $showModifyModal, item: item)
-                                                        }
-                                                    }
-                                                    Text(item.descrizione!)
-                                                        .fixedSize(horizontal: false, vertical: true)
+                                        HStack {
+                                            VStack(alignment: .leading, spacing: 10) {
+                                                HStack {
+                                                    Text(item.title!)
+                                                        .fontWeight(.bold)
+                                                        .font(.title3)
                                                         .foregroundColor(.white)
-                                                        .multilineTextAlignment(.leading)
+                                                    Spacer()
+                                                    Button(action: {
+                                                        showModifyModal.toggle()
+                                                    })
+                                                    {
+                                                        Image(systemName: "square.and.pencil")
+                                                            .foregroundColor(.white)
+                                                    }
+                                                    .sheet(isPresented: $showModifyModal){
+                                                        ModifyActivityView(showModifyModal: $showModifyModal, item: item)
+                                                    }
                                                 }
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .padding()
-                                                .background(item.done ? Color.brickColor : .unDoneBrickColor)
-                                                .cornerRadius(25)
+                                                Text(item.descrizione!)
+                                                    .fixedSize(horizontal: false, vertical: true)
+                                                    .foregroundColor(.white)
+                                                    .multilineTextAlignment(.leading)
                                             }
-                                            
-                                        
-                                        
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .padding()
+                                            .background(item.done ? Color.brickColor : .unDoneBrickColor)
+                                            .cornerRadius(25)
+                                        }
                                     }
                                     }
                                 }
@@ -195,19 +193,15 @@ struct MyScheduleView: View {
                     }
                 }
                 .padding()
-            }.navigationBarItems(leading:
-                                    Button("Previous day") {
-                if(day > 1){
+            }.navigationBarItems(leading: Button("Previous day") {
+                if(day > 1) {
                     day -= 1
                 }
-                
             },
-                                trailing: Button("Next day"){
+                trailing: Button("Next day"){
                 if(day < 21){
                     day += 1
-                }
-                
-            })
+                }})
         }
         .onAppear {
             UserDefaults.standard.set(today, forKey: "currentDay")
