@@ -53,8 +53,8 @@ struct ModifiyView: View {
                     .font(.system(size: 35.0))
                     .padding(.horizontal, 7)
 //                    .navigationBarTitle(Text("Modify your activity"), displayMode: .inline)
-        }.frame(width: 800,alignment: .leading)
-            .background(Color.red)
+        }
+//            .background(Color.purple)
     }
 }
 

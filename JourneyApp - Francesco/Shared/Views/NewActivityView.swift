@@ -190,18 +190,6 @@ struct NewActivityView: View {
         completionHandler([.banner, .badge, .sound])
     }
     
-//    func displayTwentyOneDay(newItem: Activity) -> Int {
-//        var currentDayOfChallenge = 0
-//        var endOfTheDay: Date {
-//            var components = DateComponents()
-//            components.hour = 23
-//            components.minute = 59
-//            return Calendar.current.date(from: components) ?? Date.now
-//        }
-//    }
-    
-    
-    
     @available(iOS 15, *)
     struct NewActivityView_Previews: PreviewProvider {
         static var previews: some View {

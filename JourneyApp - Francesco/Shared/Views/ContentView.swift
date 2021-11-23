@@ -81,7 +81,6 @@ struct MyScheduleView: View {
                         }
                     }
                     //            MARK: The current day of the 21's challenge
-                    
                     Text(today, style: .date)
                         .fontWeight(.thin)
                         .navigationTitle("My Schedule")
@@ -138,9 +137,7 @@ struct MyScheduleView: View {
                                         NavigationLink {
                                             RoutineDetailView(item: item)
                                         }
-                                        
                                     label: {
-                                        
                                         HStack {
                                             VStack(alignment: .leading, spacing: 10) {
                                                 HStack {

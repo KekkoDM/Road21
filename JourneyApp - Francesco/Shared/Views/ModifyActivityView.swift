@@ -28,22 +28,29 @@ struct ModifyActivityView: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack {
+                HStack {
                     TextField("\(item.title!)",text: $title)
                     .foregroundColor(.black)
+                    .multilineTextAlignment(.leading)
                     .font(Font.title.weight(.bold))
                     .font(.title)
                     .font(.system(size: 35.0))
                     .padding(.horizontal, 7)
+                    .padding(.top, 10)
                     .navigationBarTitle(Text("Modify your activity"), displayMode: .inline)
+                    
+                    Spacer()
+                }
                 
                     TextField("\(item.descrizione!)", text: $description)
                     .frame(height: 150, alignment: .topLeading)
+                    .multilineTextAlignment(.leading)
                     .foregroundColor(.black)
                     .padding()
                     .background(Color.customBeige)
                     .cornerRadius(20)
-                }.padding(.top, 10)
+//                }
+            .padding(.top, 10)
                 
                 VStack {
                     HStack {
@@ -86,8 +93,6 @@ struct ModifyActivityView: View {
                                         .background(Color.brickColor)
                                         .cornerRadius(25)
                                 }.padding(.top, 10)
-
-                
                 Spacer()
             }
             .navigationBarItems(leading:
@@ -159,5 +164,3 @@ struct ModifyActivityView: View {
 //        }
 //    }
 }
-
-//}
