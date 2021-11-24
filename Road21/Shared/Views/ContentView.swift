@@ -37,8 +37,7 @@ struct MyScheduleView: View {
     @State private var isRedirecting = false
     @State private var redirectedToDetailView = false
     @State var isCompleted = false
-    @State var modifyView = ModifyActivityView(showModifyModal: .constant(true), item: Activity())
-    
+    //    @State var modifyView = ModifyActivityView(showModifyModal: .constant(true), item: Activity())
     
     
     var body: some View {
@@ -117,7 +116,7 @@ struct MyScheduleView: View {
                             if(item.day == day){
                                 HStack {
                                     Button(action: {
-                                        item.done.toggle()  
+                                        item.done.toggle()
                                     }) {
                                         Image(systemName: item.done ? "checkmark.circle.fill" : "checkmark.circle")
                                             .imageScale(.large)
@@ -136,49 +135,36 @@ struct MyScheduleView: View {
                                             Text("\(day)/21")
                                                 .foregroundColor(.black)
                                         }
-                                        NavigationLink {
-                                            RoutineDetailView(item: item)
-                                        }
-                                    label: {
-                                        
-                                            
-                                        
-                                        HStack {
-                                            VStack(alignment: .leading, spacing: 10) {
-                                                HStack {
-                                                    Text(item.title!)
-                                                        .fontWeight(.bold)
-                                                        .font(.title3)
-                                                        .foregroundColor(.white)
-                                                    Spacer()
-                                                    Button(action: {
-                                                        showModifyModal.toggle()
-                                                        
-                                                    })
-                                                    
-                                                    {
-                                                        NavigationLink(destination: ModifyActivityView(showModifyModal: $showModifyModal, item: item)){
+                                        NavigationLink(destination: RoutineDetailView(item: item), isActive: $redirectedToDetailView) {
+                                            HStack {
+                                                VStack(alignment: .leading, spacing: 10) {
+                                                    HStack {
+                                                        Text(item.title!)
+                                                            .fontWeight(.bold)
+                                                            .font(.title3)
+                                                            .foregroundColor(.white)
+                                                        Spacer()
+                                                        Button(action: {
+                                                            showModifyModal.toggle()
+                                                        })
+                                                        {
                                                             Image(systemName: "square.and.pencil")
                                                                 .foregroundColor(.white)
+                                                        }.sheet(isPresented: $showModifyModal){
+                                                            ModifyActivityView(showModifyModal: $showModifyModal, item: item)
                                                         }
                                                     }
-//                                                    .sheet(isPresented: $showModifyModal){
-//                                                        ModifyActivityView(showModifyModal: $showModifyModal, item: item)
-//                                                    }
+                                                    Text(item.descrizione!)
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .foregroundColor(.white)
+                                                        .multilineTextAlignment(.leading)
                                                 }
-                                                
-                                            
-                                                Text(item.descrizione!)
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .foregroundColor(.white)
-                                                    .multilineTextAlignment(.leading)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .padding()
+                                                .background(item.done ? Color.brickColor : .unDoneBrickColor)
+                                                .cornerRadius(25)
                                             }
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding()
-                                            .background(item.done ? Color.brickColor : .unDoneBrickColor)
-                                            .cornerRadius(25)
                                         }
-                                    }
                                     }
                                 }
                                 .padding()
@@ -207,7 +193,7 @@ struct MyScheduleView: View {
                     print("************************* DAY: ", day)
                 }
             },
-                trailing: Button("Next day"){
+                                 trailing: Button("Next day"){
                 if(day < 21){
                     day += 1
                     print("************************* DAY: ", day)

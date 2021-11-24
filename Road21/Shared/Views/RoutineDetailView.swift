@@ -76,7 +76,7 @@ struct RoutineDetailView: View {
                                 .foregroundColor(Color(UIColor(red: 0.80, green: 0.74, blue: 0.67, alpha: 1.00)))
                         }
                         
-                        Text(day == "1" ? "Day in June" : "Days in June")
+                        Text(day == "1" ? "Day in June" : "Days in November")
                             .font(.title3)
                             .bold()
                     }

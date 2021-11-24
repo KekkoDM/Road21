@@ -13,8 +13,6 @@ struct ModifyActivityView: View {
 //        self.item = viewContext.object(with: item.objectID) as! Activity
 //    }
     
-
-    
     @State var title = ""
     @State var description = ""
     @State var convertedDate: String!
@@ -119,9 +117,9 @@ struct ModifyActivityView: View {
                 
             }
             )
-            .fullScreenCover(isPresented: $showModifyModal){
-                MyScheduleView()
-            }
+//            .fullScreenCover(isPresented: $showModifyModal){
+//                MyScheduleView()
+//            }
             .padding(.horizontal, 15)
         }
     }
