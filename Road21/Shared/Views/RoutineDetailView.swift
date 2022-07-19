@@ -107,6 +107,6 @@ struct RoutineDetailView: View {
 //@available(iOS 15, *)
 //struct RoutineDetailView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        RoutineDetailView(item: <#Activity#>)
+//        RoutineDetailView()
 //    }
 //}

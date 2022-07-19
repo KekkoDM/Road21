@@ -12,7 +12,6 @@ struct TipsView: View {
     
     let tipsList = Tips()
     @State var backgroundColor: Color = .customBeige
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -29,7 +28,7 @@ struct TipsView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.white)
                                 .bold()
-                                .fixedSize(horizontal: false, vertical: true)
+                            .fixedSize(horizontal: false, vertical: true)
                                 .navigationTitle("Tips")
                             
                             Text("\(tipsList.tipsList[index].description)")

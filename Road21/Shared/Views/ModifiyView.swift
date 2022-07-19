@@ -12,11 +12,6 @@ struct ModifiyView: View {
     @Binding var showModifyModal: Bool
     @Environment(\.managedObjectContext) private var viewContext
     
-    //    var item = Activity()
-    //
-    //    init(item: Activity) {
-    //        self.item = item
-    //    }
     
     @State var title = ""
     @State var description = ""
